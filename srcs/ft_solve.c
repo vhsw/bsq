@@ -6,16 +6,38 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:17:30 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/18 17:44:11 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/18 18:13:29 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_solve.h"
 #include "../includes/ft_io.h"
 #include "../includes/ft_std.h"
+#include <unistd.h>
 
-void	draw(int **dp, t_map map)
+void	draw(t_map map, t_area a)
 {
+	size_t	row;
+	size_t	col;
+	char	res;
+
+	row = 0;
+	while (row < map.height)
+	{
+		col = 0;
+		while (col < map.width)
+		{
+			if (row <= a.m_row && row >= (a.m_row - a.m_siz+1) &&
+				col <= a.m_col && col >= (a.m_col - a.m_siz+1))
+				res = map.full;
+			else
+				res = map.field[row][col];
+			write(1, &res, 1);
+			col++;
+		}
+		write(1, "\n", 1);
+		row++;
+	}
 }
 
 int	valid_char(char c, t_map map)
@@ -52,6 +74,33 @@ int	**create_dp(t_map map)
 	return (dp);
 }
 
+t_area	find_max(int **dp, t_map map)
+{
+	size_t	row;
+	size_t	col;
+	t_area	area;
+
+	row = 0;
+	area.m_siz = 0;
+	while (row < map.height)
+	{
+		col = 0;
+		while (col < map.width)
+		{
+			if (dp[row][col] > area.m_siz)
+			{
+				area.m_row = row;
+				area.m_col = col;
+				area.m_siz = dp[row][col];
+			}
+			col++;
+		}
+		row++;
+	}
+	printf("max size = %d, row = %d, col = %d\n", area.m_siz, area.m_row, area.m_col);
+	return (area);
+}
+
 int	solve(t_map map)
 {
 	int		**dp;
@@ -74,12 +123,6 @@ int	solve(t_map map)
 		}
 		row++;
 	}
-	for (size_t i = 0; i < map.height; i++)
-	{
-		for (size_t j = 0; j < map.width; j++)
-			printf("%d", dp[i][j]);
-		printf("\n");
-	}
-	printf("\n");
+	draw(map, find_max(dp, map));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/18 17:44:42 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/18 18:13:47 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int	main(int argc, char *argv[])
 		while (++i < argc)
 			process_file(argv[i]);
 	}
-	for (size_t i = 0; i < g_map.height; i++)
-		printf("%s\n",g_map.field[i]);
-	printf("empty = %c, obst = %c, full = %c\n", g_map.empty,  g_map.obst,  g_map.full);
+	// for (size_t i = 0; i < g_map.height; i++)
+	// 	printf("%s\n",g_map.field[i]);
+	// printf("empty = %c, obst = %c, full = %c\n", g_map.empty,  g_map.obst,  g_map.full);
 	return (0);
 }
