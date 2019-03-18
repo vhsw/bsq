@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/18 15:09:21 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/18 15:13:27 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@ t_map	process_head(int desc)
 	char	buf;
 	char	num[11];
 	t_map	map;
-	int		line;
-	int		col;
+	int		i;
 	int		size;
 
 	map = g_default_map;
-	col = -1;
+	i = -1;
 	while (read(desc, &buf, 1) && buf >= '0' && buf <= '9')
-		num[++col] = buf;
-	num[++col] = '\0';
+		num[++i] = buf;
+	num[++i] = '\0';
 	map.height = (ft_atoi(num));
 	if (!read(desc, &buf, 1))
 		map.empty = buf;
@@ -43,6 +42,18 @@ t_map	process_head(int desc)
 		map.full = buf;
 	if (!read(desc, &buf, 1) || buf != '\n')
 		map.height = 0;
+	return (map);
+}
+
+int		process_data(int desc)
+{
+	t_map	map;
+	int		line;
+	int		col;
+	size_t	size;
+	char	buf;
+
+	map = process_head(desc);
 	line = -1;
 	size = 1;
 	map.field = (char**)malloc(sizeof(char*) * map.height);
@@ -54,22 +65,12 @@ t_map	process_head(int desc)
 		{
 			if (col >= size)
 				map.field[line] = ft_extend(&map.field[line], size *= 2);
-			printf("size = %d\n", size);
 			map.field[line][col++] = buf;
 		}
 		map.field[line][col] = '\0';
 	}
-	return (map);
-}
-
-int		process_data(int desc)
-{
-	t_map map;
-
-	map = process_head(desc);
 	if (map.height == 0)
 		return (error("map error\n"));
-	printf("%s", map.field[0]);
 	return (0);
 }
 
