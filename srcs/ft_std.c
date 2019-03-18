@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 12:11:15 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/18 12:11:15 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/18 17:13:01 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,14 @@ int	ft_atoi(const char *str)
 		++str;
 	}
 	return (res * negative);
+}
+
+int	min(int a, int b)
+{
+	return (a < b ? a : b);
+}
+
+int	min3(int a, int b, int c)
+{
+	return (min(min(a, b), c));
 }

@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_extend.c                                        :+:      :+:    :+:   */
+/*   ft_solve.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/18 14:41:17 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/18 15:49:59 by clorelei         ###   ########.fr       */
+/*   Created: 2019/03/18 17:42:41 by clorelei          #+#    #+#             */
+/*   Updated: 2019/03/18 17:42:47 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#ifndef FT_SOLVE_H
+# define FT_SOLVE_H
 
-char	*ft_extend(char **p, size_t old_size)
-{
-	char		*new;
-	char		*old;
-	size_t		i;
+# include "../includes/ft_map.h"
 
-	new = malloc(old_size * 2);
-	if (!new)
-		return (NULL);
-	old = *p;
-	i = 0;
-	while (i < old_size)
-	{
-		new[i] = old[i];
-		i++;
-	}
-	free(old);
-	return (new);
-}
+int	solve(t_map map);
+
+#endif
