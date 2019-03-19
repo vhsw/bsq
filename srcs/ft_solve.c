@@ -40,11 +40,6 @@ void	draw(t_map map, t_area a)
 	}
 }
 
-int		valid_char(char c, t_map map)
-{
-	return (c == map.empty || c == map.obst);
-}
-
 int		**create_dp(t_map map)
 {
 	int		**dp;
@@ -58,7 +53,7 @@ int		**create_dp(t_map map)
 		dp[row] = (int*)malloc(sizeof(int) * map.width);
 		col = 0;
 		while (col < map.width)
-			if (valid_char(map.field[row][col], map))
+			if (map.field[row][col] == map.empty || map.field[row][col] == map.obst)
 			{
 				if (row == 0 || col == 0)
 					dp[row][col] = map.field[row][col] != map.obst;
@@ -99,6 +94,21 @@ t_area	find_max(int **dp, t_map map)
 	return (area);
 }
 
+
+void		final_free(t_map *map, int **dp)
+{
+	size_t row;
+
+	row = 0;
+	while (row < map->height)
+	{
+		free(map->field[row]);
+		free(dp[row++]);
+	}
+	free(map->field);
+	free(dp);
+}
+
 int		solve(t_map map)
 {
 	int		**dp;
@@ -122,5 +132,6 @@ int		solve(t_map map)
 		row++;
 	}
 	draw(map, find_max(dp, map));
+	final_free(&map, dp);
 	return (EXIT_SUCCESS);
 }
