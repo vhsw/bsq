@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:17:30 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 16:05:15 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 18:32:43 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int		solve(t_map map)
 
 	dp = create_dp(map);
 	if (!dp)
-		return (error("map error\n"));
+		return (error(MAP_ERROR));
 	row = 1;
 	while (row < map.height)
 	{

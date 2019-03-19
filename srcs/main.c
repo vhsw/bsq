@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 17:30:54 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 18:31:46 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	process_data(int desc)
 		g_map.height = (g_map.width == col) ? g_map.height : 0;
 	}
 	g_map.height = ((read(desc, &buf, 1) <= 0)) ? g_map.height : 0;
-	return (g_map.height != 0 ? solve(g_map) : error("map error\n"));
+	return (g_map.height != 0 ? solve(g_map) : error(MAP_ERROR));
 }
 
 int	process_file(char *path)
@@ -85,7 +85,7 @@ int	process_file(char *path)
 	if (read(desc, &dummy, 1) <= 0)
 	{
 		close(desc);
-		return (error("wrong file path\n"));
+		return (error(FILE_ERROR));
 	}
 	desc = open(path, O_RDONLY);
 	process_data(desc);
