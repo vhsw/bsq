@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:17:30 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 13:51:40 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 15:19:30 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int		**create_dp(t_map map)
 				return (NULL);
 		row++;
 	}
-	row = 0;
 	return (dp);
 }
 
@@ -123,5 +122,5 @@ int		solve(t_map map)
 		row++;
 	}
 	draw(map, find_max(dp, map));
-	return (0);
+	return (EXIT_SUCCESS);
 }

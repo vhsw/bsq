@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 14:21:31 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 15:19:49 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	process_head(int desc)
 	}
 	else
 		g_map.height = 0;
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	process_data(int desc)
@@ -91,7 +91,7 @@ int	process_file(char *path)
 	desc = open(path, O_RDONLY);
 	process_data(desc);
 	close(desc);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char *argv[])
@@ -100,7 +100,7 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2)
 	{
-		process_data(0);
+		process_data(EXIT_SUCCESS);
 	}
 	else
 	{
@@ -111,5 +111,5 @@ int	main(int argc, char *argv[])
 			else
 				process_file(argv[i]);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
