@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:17:30 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 13:37:27 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 13:51:40 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	draw(t_map map, t_area a)
 		col = 0;
 		while (col < map.width)
 		{
-			if (row <= a.m_row && row >= (a.m_row - a.m_siz+1) &&
-				col <= a.m_col && col >= (a.m_col - a.m_siz+1))
+			if (row <= a.m_row && row >= (a.m_row - a.m_siz + 1) &&
+				col <= a.m_col && col >= (a.m_col - a.m_siz + 1))
 				res = map.full;
 			else
 				res = map.field[row][col];
@@ -40,12 +40,12 @@ void	draw(t_map map, t_area a)
 	}
 }
 
-int	valid_char(char c, t_map map)
+int		valid_char(char c, t_map map)
 {
 	return (c == map.empty || c == map.obst || c == map.full);
 }
 
-int	**create_dp(t_map map)
+int		**create_dp(t_map map)
 {
 	int		**dp;
 	size_t	row;
@@ -100,7 +100,7 @@ t_area	find_max(int **dp, t_map map)
 	return (area);
 }
 
-int	solve(t_map map)
+int		solve(t_map map)
 {
 	int		**dp;
 	size_t	row;
