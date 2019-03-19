@@ -6,13 +6,12 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 13:21:30 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 13:46:59 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../includes/ft_io.h"
 #include <fcntl.h>
 #include <errno.h>
 #include <unistd.h>
@@ -20,6 +19,8 @@
 #include "../includes/ft_std.h"
 #include "../includes/ft_extend.h"
 #include "../includes/ft_solve.h"
+#include "../includes/ft_io.h"
+#include "../includes/ft_string.h"
 
 t_map g_map;
 
@@ -29,6 +30,8 @@ int	process_head(int desc)
 	char	num[11];
 	int		i;
 
+	g_map.height = 0;
+	g_map.width = 0;
 	i = -1;
 	while ((read(desc, &buf, 1) == 1) && buf >= '0' && buf <= '9')
 		num[++i] = buf;
@@ -90,8 +93,6 @@ int	main(int argc, char *argv[])
 {
 	int i;
 
-	g_map.height = 0;
-	g_map.width = 0;
 	if (argc < 2)
 	{
 		process_data(0);
@@ -100,7 +101,10 @@ int	main(int argc, char *argv[])
 	{
 		i = 0;
 		while (++i < argc)
-			process_file(argv[i]);
+			if (ft_strcmp(argv[i], "-") == 0)
+				process_data(0);
+			else
+				process_file(argv[i]);
 	}
 	return (0);
 }
