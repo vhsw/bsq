@@ -6,11 +6,10 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 17:29:28 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:30:54 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <errno.h>
