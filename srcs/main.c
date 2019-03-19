@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 15:19:49 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 17:26:35 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,14 @@ int	main(int argc, char *argv[])
 
 	if (argc < 2)
 	{
-		process_data(EXIT_SUCCESS);
+		process_data(STDIN_FILENO);
 	}
 	else
 	{
 		i = 0;
 		while (++i < argc)
 			if (ft_strcmp(argv[i], "-") == 0)
-				process_data(0);
+				process_data(STDIN_FILENO);
 			else
 				process_file(argv[i]);
 	}
