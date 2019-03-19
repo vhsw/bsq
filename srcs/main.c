@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/18 18:13:47 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 13:21:30 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@ int	process_head(int desc)
 	int		i;
 
 	i = -1;
-	while (read(desc, &buf, 1) && buf >= '0' && buf <= '9')
+	while ((read(desc, &buf, 1) == 1) && buf >= '0' && buf <= '9')
 		num[++i] = buf;
 	num[++i] = '\0';
 	g_map.height = (ft_atoi(num));
 	g_map.empty = buf;
-	if (read(desc, &buf, 1))
-		g_map.obst = buf;
-	if (read(desc, &buf, 1))
-		g_map.full = buf;
-	if (!read(desc, &buf, 1) || buf != '\n')
+	if ((read(desc, &num, 3) == 3) && num[2] == '\n')
+	{
+		g_map.obst = num[0];
+		g_map.full = num[1];
+	}
+	else
 		g_map.height = 0;
 	return (0);
 }
@@ -57,19 +58,19 @@ int	process_data(int desc)
 	g_map.field = (char**)malloc(sizeof(char*) * g_map.height);
 	while (line < g_map.height)
 	{
-		g_map.field[line] = malloc(sizeof(char) * size);
+		g_map.field[line] = (char*)malloc(sizeof(char) * size);
 		col = 0;
-		while (read(desc, &buf, 1) && buf != '\n')
+		while ((read(desc, &buf, 1) > 0) && buf != '\n')
 		{
 			if (col >= size)
 				g_map.field[line] = ft_extend(&g_map.field[line], size *= 2);
 			g_map.field[line][col++] = buf;
 		}
-		g_map.field[line][col] = '\0';
-		g_map.width = g_map.width ? g_map.width : col;
+		g_map.field[line++][col] = '\0';
+		g_map.width = (g_map.width) ? g_map.width : col;
 		g_map.height = (g_map.width == col) ? g_map.height : 0;
-		line++;
 	}
+	g_map.height = ((read(desc, &buf, 1) <= 0)) ? g_map.height : 0;
 	return (g_map.height != 0 ? solve(g_map) : error("map error\n"));
 }
 
@@ -90,6 +91,7 @@ int	main(int argc, char *argv[])
 	int i;
 
 	g_map.height = 0;
+	g_map.width = 0;
 	if (argc < 2)
 	{
 		process_data(0);
@@ -100,8 +102,5 @@ int	main(int argc, char *argv[])
 		while (++i < argc)
 			process_file(argv[i]);
 	}
-	// for (size_t i = 0; i < g_map.height; i++)
-	// 	printf("%s\n",g_map.field[i]);
-	// printf("empty = %c, obst = %c, full = %c\n", g_map.empty,  g_map.obst,  g_map.full);
 	return (0);
 }

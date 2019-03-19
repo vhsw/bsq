@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:17:30 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/18 18:13:29 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 13:37:27 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ t_area	find_max(int **dp, t_map map)
 		}
 		row++;
 	}
-	printf("max size = %d, row = %d, col = %d\n", area.m_siz, area.m_row, area.m_col);
 	return (area);
 }
 
