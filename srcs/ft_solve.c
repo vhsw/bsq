@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:17:30 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 15:19:30 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 16:05:15 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	draw(t_map map, t_area a)
 
 int		valid_char(char c, t_map map)
 {
-	return (c == map.empty || c == map.obst || c == map.full);
+	return (c == map.empty || c == map.obst);
 }
 
 int		**create_dp(t_map map)
