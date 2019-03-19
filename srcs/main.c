@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 13:46:59 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/19 14:21:31 by clorelei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,16 @@ int	process_data(int desc)
 
 int	process_file(char *path)
 {
-	int	desc;
+	int		desc;
+	char	dummy;
 
 	desc = open(path, O_RDONLY);
-	if (desc < 0)
+	if (read(desc, &dummy, 1) <= 0)
+	{
+		close(desc);
 		return (error("wrong file path\n"));
+	}
+	desc = open(path, O_RDONLY);
 	process_data(desc);
 	close(desc);
 	return (0);
