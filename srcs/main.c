@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 11:28:06 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 18:31:46 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:58:42 by scold            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	process_data(int desc)
 		col = 0;
 		while ((read(desc, &buf, 1) > 0) && buf != '\n')
 		{
-			if (col >= size)
+			if (col >= size - 1)
 				g_map.field[line] = ft_extend(&g_map.field[line], size *= 2);
 			g_map.field[line][col++] = buf;
 		}

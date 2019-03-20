@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 12:17:20 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 18:32:08 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:20:33 by scold            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_area
 	int			m_siz;
 }				t_area;
 
-#define MAP_ERROR "map error\n"
-#define FILE_ERROR "map error\n"
+# define MAP_ERROR "map error\n"
+# define FILE_ERROR "map error\n"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:17:30 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/19 18:32:43 by clorelei         ###   ########.fr       */
+/*   Updated: 2019/03/20 18:35:36 by scold            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ int		**create_dp(t_map map)
 		dp[row] = (int*)malloc(sizeof(int) * map.width);
 		col = 0;
 		while (col < map.width)
-			if (map.field[row][col] == map.empty || map.field[row][col] == map.obst)
+			if (map.field[row][col] == map.empty ||
+				map.field[row][col] == map.obst)
 			{
 				if (row == 0 || col == 0)
 					dp[row][col] = map.field[row][col] != map.obst;
@@ -94,8 +95,7 @@ t_area	find_max(int **dp, t_map map)
 	return (area);
 }
 
-
-void		final_free(t_map *map, int **dp)
+void	final_free(t_map *map, int **dp)
 {
 	size_t row;
 
@@ -132,6 +132,5 @@ int		solve(t_map map)
 		row++;
 	}
 	draw(map, find_max(dp, map));
-	final_free(&map, dp);
 	return (EXIT_SUCCESS);
 }
