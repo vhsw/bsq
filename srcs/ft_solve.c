@@ -6,7 +6,7 @@
 /*   By: clorelei <clorelei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:17:30 by clorelei          #+#    #+#             */
-/*   Updated: 2019/03/20 18:35:36 by scold            ###   ########.fr       */
+/*   Updated: 2019/03/20 19:09:46 by scold            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	draw(t_map map, t_area a)
 		col = 0;
 		while (col < map.width)
 		{
-			if (row <= a.m_row && row >= (a.m_row - a.m_siz + 1) &&
+			if (a.m_siz > 0 &&
+				row <= a.m_row && row >= (a.m_row - a.m_siz + 1) &&
 				col <= a.m_col && col >= (a.m_col - a.m_siz + 1))
 				res = map.full;
 			else
