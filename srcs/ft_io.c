@@ -22,5 +22,5 @@ int		message(char *msg)
 int		error(char *msg)
 {
 	write(2, msg, ft_strlen(msg));
-	exit(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }
